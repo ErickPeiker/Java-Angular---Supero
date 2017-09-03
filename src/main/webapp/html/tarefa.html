@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<title>Lista de tarefas</title>
+	<link rel='stylesheet' href='./stylesheets/style.css' />
+	<link rel='stylesheet' href='./stylesheets/basic/bootstrap.min.css'>
+	<link rel='stylesheet' href='./stylesheets/basic/bootstrap-theme.min.css'>
+	<link rel='stylesheet' href='./stylesheets/basic/ngDraggable.css'>
+	<script src="./js/basic/jquery.min.js"></script>
+	<script	src="./js/basic/bootstrap.min.js"></script>
+	<script src="./js/basic/angular.min.js"></script>
+	<script src="./js/basic/ngDraggable.js"></script>
+</head>
+
+<script type="text/javascript" src="./js/tarefa.js"></script> 
+
+<body>
+
+	<!-- Modal Cadastro -->
+	<div class="modal fade" id="myModal" role="dialog">
+		
+	  </div>
+	<!-- Fim Modal Cadastro -->
+	
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="./">Sistema de tarefas</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- Fim Menu -->
+	
+	<!-- Centro Tela -->
+	<div class="jumbotron" ng-controller="controlador" ng-init="init()">
+		<div class="container-fluid">
+			<div class="row">
+		        <div class="col-md-3 colunas aberto" ng-drop="true" ng-drop-success="onDropComplete($data,$event, 'Aberto')">
+		        	<h3>Abertos</h3>
+		        	<div class="card" 
+		        			ng-repeat="tarefa in tarefas | filter:{status: 'Aberto', remocao: null} | orderBy : ['-criacao']"
+		        			ng-drag="true" ng-drag-data="tarefa" draggable="true">
+						<div class="row">
+			        		<div class="col-md-8">
+			        			<h4 class="card-title" ng-bind="tarefa.titulo"></h4>
+			        		</div>
+			        		<div class="col-md-2">
+			        			<a href="#" ng-click="editar(tarefa)"><img alt="editar" src="./img/edit.png"></a>
+			        		</div>
+			        		<div class="col-md-2">
+			        			<img class="mover" alt="mover" src="./img/move.png">
+			        		</div>
+		        		</div>
+		        		<div class="row">
+		        			<div class="col-md-12">
+		        				<p class="card-text" ng-bind="tarefa.descricao"></p>
+		        			</div>
+		        		</div>
+					</div>
+					
+					<div class="card-novo">
+						<form class="form-inline">
+							<div class="form-group">
+								<label for="titulo">Título:</label>
+								<input ng-model="tarefa.titulo" class="form-control" id="titulo">
+							</div>
+							<div class="form-group">
+								<label for="descricao">Descrição:</label>
+								<textarea ng-model="tarefa.descricao" class="form-control" id="descricao"></textarea>
+							</div>
+							<button ng-click="salvaTarefa()" type="button" class="btn btn-success">Salvar</button>
+							<button ng-click="reset()" type="button" class="btn btn-default">Limpar</button>
+						</form>
+					</div>
+		        </div>
+		        <div class="col-md-3 colunas em-andamento" ng-drop="true" ng-drop-success="onDropComplete($data,$event, 'Em Andamento')">
+		        	<h3>Em Andamento</h3>
+		        	<div class="card col-md-12" ng-repeat="tarefa in tarefas | filter:{status: 'Em Andamento', remocao: null} | orderBy : ['-updated']"
+		        			ng-drag="true" ng-drag-data="tarefa" draggable="true">
+		        		<div class="row">
+			        		<div class="col-md-8">
+			        			<h4 class="card-title" ng-bind="tarefa.titulo"></h4>
+			        		</div>
+			        		<div class="col-md-2">
+			        			<a href="#" ng-click="editar(tarefa)"><img alt="editar" src="./img/edit.png"></a>
+			        		</div>
+			        		<div class="col-md-2">
+			        			<img class="mover" alt="mover" src="./img/move.png">
+			        		</div>
+		        		</div>
+		        		<div class="row">
+		        			<div class="col-md-12">
+		        				<p class="card-text" ng-bind="tarefa.descricao"></p>
+		        			</div>
+		        		</div>
+					</div>
+		        </div>
+		        <div class="col-md-3 colunas encerrado" ng-drop="true" ng-drop-success="onDropComplete($data,$event, 'Encerrado')">
+		        	<h3>Encerrado</h3>
+		        	<div class="card" ng-repeat="tarefa in tarefas | filter:{status: 'Encerrado', remocao: null} | orderBy : ['-done']" 
+		        			ng-drag="true" ng-drag-data="tarefa" draggable="true">
+						<div class="row">
+			        		<div class="col-md-8">
+			        			<h4 class="card-title" ng-bind="tarefa.titulo"></h4>
+			        		</div>
+			        		<div class="col-md-2">
+			        			<a href="#" ng-click="editar(tarefa)"><img alt="editar" src="./img/edit.png"></a>
+			        		</div>
+			        		<div class="col-md-2">
+			        			<img class="mover" alt="mover" src="./img/move.png">
+			        		</div>
+		        		</div>
+		        		<div class="row">
+		        			<div class="col-md-12">
+		        				<p class="card-text" ng-bind="tarefa.descricao"></p>
+		        			</div>
+		        		</div>
+					</div>
+		        </div>
+		        <div class="col-md-3 colunas removido" ng-drop="true" ng-drop-success="onDropComplete($data,$event, 'Removido')">
+		        	<h3>Removido</h3>
+		        	<div class="card" ng-repeat="tarefa in tarefas | filter:{status: 'Removido'} | orderBy : ['-deleted']" 
+		        			ng-drag="true" ng-drag-data="tarefa" draggable="true">
+						<div class="row">
+			        		<div class="col-md-8">
+			        			<h4 class="card-title" ng-bind="tarefa.titulo"></h4>
+			        		</div>
+			        		<div class="col-md-2">
+			        			<a href="#" ng-click="exclusaoTarefa(tarefa)"><img alt="remover" src="./img/remove.png"></a>
+			        		</div>
+			        		<div class="col-md-2">
+			        			<img class="mover" alt="mover" src="./img/move.png">
+			        		</div>
+		        		</div>
+		        		<div class="row">
+		        			<div class="col-md-12">
+		        				<p class="card-text" ng-bind="tarefa.descricao"></p>
+		        			</div>
+		        		</div>
+					</div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	<!-- Fim Centro Tela -->
+	
+	<!-- Rodapé -->
+	<div class="container">
+		<hr>
+		<footer>
+			<div class="col-md-12 text-center">
+				<img class="img-responsive" alt="Supero TI" src="./img/Supero.jpg" width="100" height="100"/>
+				<h2>Seleção Supero TI</h2>
+			</div>
+		</footer>
+	</div>
+	<!-- Fim Rodapé -->
+	
+</body>
+</html>

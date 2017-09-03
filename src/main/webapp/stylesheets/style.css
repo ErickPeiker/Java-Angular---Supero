@@ -1,0 +1,83 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+ul {
+    list-style-type: none;
+}
+
+/*
+Colunas de status
+*/
+.colunas{
+	text-align: center;
+	padding: 10px 20px;
+	min-height: 400px !important;
+}
+.aberto {
+	color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.em-andamento {
+	color: #fff;
+    background-color: #d58512;
+    border-color: #985f0d;
+}
+.encerrado {
+	color: #fff;
+    background-color: #398439;
+    border-color: #255625;
+}
+.removido {
+	color: #fff;
+    background-color: #ac2925;
+    border-color: #761c19;
+}
+
+/*
+	Cards de tickets com tarefas
+*/
+.card {
+	color: #000;
+    background-color: #fff;
+    border-color: #343a40;
+    padding: 10px 5px;
+    margin: 5px;
+}
+.card-title {
+	text-align: left;
+}
+.card-text {
+	text-align: left;
+	font-size: 12px!important;
+}
+.mover:hover{
+	cursor:move;
+}
+
+/*
+Tickets novos
+*/
+.card-novo {
+	color: #000;
+    background-color: #fff;
+    border-color: #343a40;
+    margin: 5px;
+}
+
+.card-novo * {
+    padding: 5px 0;
+}
+
+/**
+Rodapé
+**/
+.img-responsive {
+  display: inline-block!important;
+}
+footer h2{
+	text-align: center;
+}
