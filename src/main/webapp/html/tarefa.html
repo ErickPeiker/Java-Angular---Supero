@@ -49,14 +49,8 @@
 		        			ng-repeat="tarefa in tarefas | filter:{status: 'Aberto', remocao: null} | orderBy : ['-criacao']"
 		        			ng-drag="true" ng-drag-data="tarefa" draggable="true">
 						<div class="row">
-			        		<div class="col-md-8">
+			        		<div class="col-md-12">
 			        			<h4 class="card-title" ng-bind="tarefa.titulo"></h4>
-			        		</div>
-			        		<div class="col-md-2">
-			        			<a href="#" ng-click="editar(tarefa)"><img alt="editar" src="./img/edit.png"></a>
-			        		</div>
-			        		<div class="col-md-2">
-			        			<img class="mover" alt="mover" src="./img/move.png">
 			        		</div>
 		        		</div>
 		        		<div class="row">
@@ -64,6 +58,15 @@
 		        				<p class="card-text" ng-bind="tarefa.descricao"></p>
 		        			</div>
 		        		</div>
+		        		<div class="row">
+		        			<div class="col-xs-6 col-xs-6 col-md-6"></div>
+		        			<div class="col-xs-3 col-xs-3 col-md-3">
+			        			<a href="#" ng-click="editar(tarefa)"><img alt="editar" src="./img/edit.png"></a>
+			        		</div>
+			        		<div class="col-xs-3 col-xs-3 col-md-3">
+			        			<img class="mover" alt="mover" src="./img/move.png">
+			        		</div>
+			        	</div>
 					</div>
 					
 					<div class="card-novo">
@@ -89,18 +92,21 @@
 			        		<div class="col-md-8">
 			        			<h4 class="card-title" ng-bind="tarefa.titulo"></h4>
 			        		</div>
-			        		<div class="col-md-2">
-			        			<a href="#" ng-click="editar(tarefa)"><img alt="editar" src="./img/edit.png"></a>
-			        		</div>
-			        		<div class="col-md-2">
-			        			<img class="mover" alt="mover" src="./img/move.png">
-			        		</div>
 		        		</div>
 		        		<div class="row">
 		        			<div class="col-md-12">
 		        				<p class="card-text" ng-bind="tarefa.descricao"></p>
 		        			</div>
 		        		</div>
+		        		<div class="row">
+		        			<div class="col-xs-6 col-xs-6 col-md-6"></div>
+		        			<div class="col-xs-3 col-xs-3 col-md-3">
+			        			<a href="#" ng-click="editar(tarefa)"><img alt="editar" src="./img/edit.png"></a>
+			        		</div>
+			        		<div class="col-xs-3 col-xs-3 col-md-3">
+			        			<img class="mover" alt="mover" src="./img/move.png">
+			        		</div>
+			        	</div>
 					</div>
 		        </div>
 		        <div class="col-md-3 colunas encerrado" ng-drop="true" ng-drop-success="onDropComplete($data,$event, 'Encerrado')">
@@ -111,18 +117,21 @@
 			        		<div class="col-md-8">
 			        			<h4 class="card-title" ng-bind="tarefa.titulo"></h4>
 			        		</div>
-			        		<div class="col-md-2">
-			        			<a href="#" ng-click="editar(tarefa)"><img alt="editar" src="./img/edit.png"></a>
-			        		</div>
-			        		<div class="col-md-2">
-			        			<img class="mover" alt="mover" src="./img/move.png">
-			        		</div>
 		        		</div>
 		        		<div class="row">
 		        			<div class="col-md-12">
 		        				<p class="card-text" ng-bind="tarefa.descricao"></p>
 		        			</div>
 		        		</div>
+		        		<div class="row">
+		        			<div class="col-xs-6 col-xs-6 col-md-6"></div>
+		        			<div class="col-xs-3 col-xs-3 col-md-3">
+			        			<a href="#" ng-click="editar(tarefa)"><img alt="editar" src="./img/edit.png"></a>
+			        		</div>
+			        		<div class="col-xs-3 col-xs-3 col-md-3">
+			        			<img class="mover" alt="mover" src="./img/move.png">
+			        		</div>
+			        	</div>
 					</div>
 		        </div>
 		        <div class="col-md-3 colunas removido" ng-drop="true" ng-drop-success="onDropComplete($data,$event, 'Removido')">
@@ -133,18 +142,21 @@
 			        		<div class="col-md-8">
 			        			<h4 class="card-title" ng-bind="tarefa.titulo"></h4>
 			        		</div>
-			        		<div class="col-md-2">
-			        			<a href="#" ng-click="exclusaoTarefa(tarefa)"><img alt="remover" src="./img/remove.png"></a>
-			        		</div>
-			        		<div class="col-md-2">
-			        			<img class="mover" alt="mover" src="./img/move.png">
-			        		</div>
 		        		</div>
 		        		<div class="row">
 		        			<div class="col-md-12">
 		        				<p class="card-text" ng-bind="tarefa.descricao"></p>
 		        			</div>
 		        		</div>
+		        		<div class="row">
+		        			<div class="col-xs-6 col-xs-6 col-md-6"></div>
+		        			<div class="col-xs-3 col-xs-3 col-md-3">
+			        			<a href="#" ng-click="editar(tarefa)"><img alt="editar" src="./img/edit.png"></a>
+			        		</div>
+			        		<div class="col-xs-3 col-xs-3 col-md-3">
+			        			<img class="mover" alt="mover" src="./img/move.png">
+			        		</div>
+			        	</div>
 					</div>
 		        </div>
 		    </div>
